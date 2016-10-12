@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @SpringBootApplication
 @RestController
@@ -17,4 +19,11 @@ public class SpringtestApplication {
     String hello() {
         return "Hello World!";
     }
+    
+    @RequestMapping("/hello")
+    public String hello(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+        model.addAttribute("name", name);
+        return "hello";
+    }
+    
 }
