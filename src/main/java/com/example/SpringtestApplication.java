@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Controller;
 
 @SpringBootApplication
-@RestController
+@Controller
 public class SpringtestApplication {
 
 	public static void main(String[] args) {
@@ -21,7 +22,7 @@ public class SpringtestApplication {
     }
     
     @RequestMapping("/hello")
-    public String hello(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+    public String hello(@RequestParam(value="name", required=false, defaultValue="test") String name, Model model) {
         model.addAttribute("name", name);
         return "hello";
     }
