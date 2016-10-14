@@ -24,5 +24,15 @@ public class TestController {
     	viewtest = "2";
     	return "redirect:/";
     }
+    
+    @PostMapping(path = "reg")
+    String reg() {
+    	return "reg";
+    }
+    
+    @PostMapping(path = "back")
+    String back() {
+    	return "redirect:/";
+    }
 
 }

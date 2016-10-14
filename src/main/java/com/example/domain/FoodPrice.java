@@ -15,9 +15,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "foodprice")
 public class FoodPrice {
-    @Id
-    @GeneratedValue
-    private Integer id;
+
+	@Id
+	@GeneratedValue
+	private Integer id;
 	private String name;
-    private String price;
+	private String price;
+
 }

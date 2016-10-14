@@ -12,10 +12,14 @@
 </head>
 <body>
 
+	<form th:action="@{/reg}" method="post">
+		<input type="submit" class="btn btn-danger" value="reg" />
+	</form>
+
 	<h3>
 		<p th:text="'Hello, ' + ${name} + '!'" />
 	</h3>
-
+	
 	<form th:action="@{/edit}" method="post">
 		<input type="submit" class="btn btn-danger" value="update" />
 	</form>
