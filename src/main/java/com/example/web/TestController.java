@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/")
 public class TestController {
-
+	
 	String viewtest;
+	
+    @ModelAttribute
+    FoodPriceForm setUpForm() {
+        return new FoodPriceForm();
+    }
 
 	@GetMapping
 	String init(Model model) {
@@ -28,6 +33,13 @@ public class TestController {
 	@PostMapping(path = "reg")
 	String reg() {
 		return "reg";
+	}
+	
+	@PostMapping(path = "update")
+	String update(FoodPriceForm form) {
+		System.out.println(form.getName());
+		System.out.println(form.getPrice());
+		return "redirect:/";
 	}
 
 	@PostMapping(path = "back")
