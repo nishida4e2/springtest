@@ -12,54 +12,63 @@
 </head>
 <body>
 
-	<form th:action="@{/reg}" method="post">
-		<input type="submit" class="btn btn-danger" value="reg" />
-	</form>
 
-	<h3>
-		<p th:text="'Hello, ' + ${name} + '!'" />
-	</h3>
+	<div class="container">
 
-	<form th:action="@{/edit}" method="post">
-		<input type="submit" class="btn btn-danger" value="update" />
-	</form>
 
-	<hr />
+		<h3>一覧画面</h3>
+		<form th:action="@{/reg}" method="post">
+			<input type="submit" class="btn btn-success" value="新規登録" />
+		</form>
 
-	<table class="table table-striped table-condensed">
-		<tr>
-			<th>item</th>
-			<th>price</th>
-			<th colspan="2"></th>
-		</tr>
-		<tr>
-			<td>a</td>
-			<td>600</td>
-			<td><input class="btn btn-default btn-sm" type="submit"
-				name="form" value="edit" /></td>
-			<td><input class="btn btn-danger btn-sm" type="submit"
-				name="form" value="delete" /></td>
-		</tr>
+		<h3>
+			<p th:text="'Hello, ' + ${name} + '!'" />
+		</h3>
 
-		<tr>
-			<td>b</td>
-			<td>600</td>
-			<td><input class="btn btn-default btn-sm" type="submit"
-				name="form" value="edit" /></td>
-			<td><input class="btn btn-danger btn-sm" type="submit"
-				name="form" value="delete" /></td>
-		</tr>
+		<form th:action="@{/edit}" method="post">
+			<input type="submit" class="btn btn-danger" value="update" />
+		</form>
 
-		<tr>
-			<td>c</td>
-			<td>600</td>
-			<td><input class="btn btn-default btn-sm" type="submit"
-				name="form" value="edit" /></td>
-			<td><input class="btn btn-danger btn-sm" type="submit"
-				name="form" value="delete" /></td>
-		</tr>
+		<hr />
 
-	</table>
+		<table class="table table-striped table-condensed">
+			<tr>
+				<th>item</th>
+				<th>price</th>
+				<th colspan="2"></th>
+			</tr>
+			<tr>
+				<td>a</td>
+				<td>600</td>
+				<td><input class="btn btn-default btn-sm" type="submit"
+					name="form" value="edit" /></td>
+				<td><input class="btn btn-danger btn-sm" type="submit"
+					name="form" value="delete" /></td>
+			</tr>
+
+			<tr>
+				<td>b</td>
+				<td>600</td>
+				<td><input class="btn btn-default btn-sm" type="submit"
+					name="form" value="edit" /></td>
+				<td><input class="btn btn-danger btn-sm" type="submit"
+					name="form" value="delete" /></td>
+			</tr>
+
+			<tr>
+				<td>c</td>
+				<td>600</td>
+				<td><input class="btn btn-default btn-sm" type="submit"
+					name="form" value="edit" /></td>
+				<td><input class="btn btn-danger btn-sm" type="submit"
+					name="form" value="delete" /></td>
+			</tr>
+
+		</table>
+
+	</div>
+
+
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
