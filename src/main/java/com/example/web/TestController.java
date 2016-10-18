@@ -10,11 +10,6 @@ public class TestController {
 	
 	String viewtest;
 	
-    @ModelAttribute
-    FoodPriceForm setUpForm() {
-        return new FoodPriceForm();
-    }
-
 	@GetMapping
 	String init(Model model) {
 		// viewtest = "1";
@@ -31,7 +26,16 @@ public class TestController {
 	}
 
 	@PostMapping(path = "reg")
-	String reg() {
+	String reg(Model model) {
+
+		/*
+		FoodPriceForm fpf = new FoodPriceForm();
+		fpf.setName("test");
+		model.addAttribute("foodPriceForm", fpf);
+		*/
+		
+		model.addAttribute("foodPriceForm", new FoodPriceForm());
+		
 		return "reg";
 	}
 	
