@@ -22,7 +22,7 @@
 
 		<hr />
 
-		<form th:action="@{/update}" th:object="${foodPriceForm}"
+		<form th:action="@{/editupdate}" th:object="${foodPriceForm}"
 			method="post">
 			<fieldset>
 
@@ -40,6 +40,7 @@
 						class="form-control" />
 				</div>
 
+				<input type="hidden" name="id" th:value="*{id}"/>
 				<button type="submit" class="btn btn-success btn-lg btn-block">登録</button>
 
 			</fieldset>
