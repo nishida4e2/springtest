@@ -20,6 +20,6 @@ public class FoodPrice {
 	@GeneratedValue
 	private Integer id;
 	private String name;
-	private String price;
+	private Integer price;
 
 }

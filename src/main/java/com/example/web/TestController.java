@@ -1,12 +1,19 @@
 package com.example.web;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.example.domain.FoodPrice;
+import com.example.service.FoodPriceService;
 
 @Controller
 @RequestMapping("/")
 public class TestController {
+	
+    @Autowired
+    FoodPriceService foodService;
 	
 	String viewtest;
 	
@@ -41,8 +48,19 @@ public class TestController {
 	
 	@PostMapping(path = "update")
 	String update(FoodPriceForm form) {
+		
 		System.out.println(form.getName());
 		System.out.println(form.getPrice());
+		
+        FoodPrice fp = new FoodPrice();
+        BeanUtils.copyProperties(form, fp);
+        
+		System.out.println(fp.getName());
+		System.out.println(fp.getPrice());
+		System.out.println(fp.getId());
+        
+        foodService.create(fp);
+		
 		return "redirect:/";
 	}
 
