@@ -24,6 +24,12 @@ public class TestController {
 		model.addAttribute("foodModel", foodList);
 		return "menulist";
 	}
+	
+	@PostMapping(path = "reg")
+	String reg(Model model) {
+		model.addAttribute("foodPriceForm", new FoodPrice());
+		return "reg";
+	}
 
 	@PostMapping(path = "edit")
 	String edit(@RequestParam Integer id, Model model) {
@@ -32,14 +38,8 @@ public class TestController {
 		return "reg";
 	}
 	
-	@PostMapping(path = "reg")
-	String reg(Model model) {
-		model.addAttribute("foodPriceForm", new FoodPrice());
-		return "reg";
-	}
-
-	@PostMapping(path = "editupdate")
-	String editupdate(Integer id, FoodPriceForm form) {
+	@PostMapping(path = "create")
+	String create(Integer id, FoodPriceForm form) {
 		FoodPrice fp = new FoodPrice();
 		BeanUtils.copyProperties(form, fp);
 		fp.setId(id);
@@ -52,7 +52,6 @@ public class TestController {
 		foodService.delete(id);
 		return "redirect:/";
 	}
-
 
 	@PostMapping(path = "back")
 	String back() {
