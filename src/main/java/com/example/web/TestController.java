@@ -6,6 +6,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.domain.FoodPrice;
@@ -24,7 +26,7 @@ public class TestController {
 		model.addAttribute("foodModel", foodList);
 		return "menulist";
 	}
-	
+
 	@PostMapping(path = "reg")
 	String reg(FoodPriceForm form) {
 		form = new FoodPriceForm();
@@ -37,9 +39,14 @@ public class TestController {
 		BeanUtils.copyProperties(fp, form);
 		return "reg";
 	}
-	
+
 	@PostMapping(path = "create")
-	String create(Integer id, FoodPriceForm form) {
+	String create(Integer id, @Validated FoodPriceForm form, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "reg";
+		}
+
 		FoodPrice fp = new FoodPrice();
 		BeanUtils.copyProperties(form, fp);
 		fp.setId(id);
