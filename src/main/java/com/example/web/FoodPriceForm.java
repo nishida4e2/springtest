@@ -5,7 +5,8 @@ import lombok.Data;
 @Data
 public class FoodPriceForm {
 
-    private String name;
-    private int price;
+	private int id;
+	private String name;
+	private int price;
 
 }

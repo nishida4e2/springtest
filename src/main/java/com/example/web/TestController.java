@@ -26,15 +26,15 @@ public class TestController {
 	}
 	
 	@PostMapping(path = "reg")
-	String reg(Model model) {
-		model.addAttribute("foodPriceForm", new FoodPrice());
+	String reg(FoodPriceForm form) {
+		form = new FoodPriceForm();
 		return "reg";
 	}
 
 	@PostMapping(path = "edit")
-	String edit(@RequestParam Integer id, Model model) {
+	String edit(@RequestParam Integer id, FoodPriceForm form) {
 		FoodPrice fp = foodService.findOne(id);
-		model.addAttribute("foodPriceForm", fp);
+		BeanUtils.copyProperties(fp, form);
 		return "reg";
 	}
 	
