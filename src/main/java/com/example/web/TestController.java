@@ -1,48 +1,62 @@
 package com.example.web;
 
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.domain.FoodPrice;
+import com.example.service.FoodPriceService;
 
 @Controller
 @RequestMapping("/")
 public class TestController {
-	
-	String viewtest;
-	
+
+	@Autowired
+	FoodPriceService foodService;
+
 	@GetMapping
 	String init(Model model) {
-		// viewtest = "1";
-		model.addAttribute("name", viewtest);
+		List<FoodPrice> foodList = foodService.findAll();
+		model.addAttribute("foodModel", foodList);
 		return "menulist";
 	}
 
+	@PostMapping(path = "reg")
+	String reg(FoodPriceForm form) {
+		form = new FoodPriceForm();
+		return "reg";
+	}
+
 	@PostMapping(path = "edit")
-	String edit(Model model) {
-		// model.addAttribute("name", "edit_test");
-		// return "hello";
-		viewtest = "2";
+	String edit(@RequestParam Integer id, FoodPriceForm form) {
+		FoodPrice fp = foodService.findOne(id);
+		BeanUtils.copyProperties(fp, form);
+		return "reg";
+	}
+
+	@PostMapping(path = "create")
+	String create(Integer id, @Validated FoodPriceForm form, BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "reg";
+		}
+
+		FoodPrice fp = new FoodPrice();
+		BeanUtils.copyProperties(form, fp);
+		fp.setId(id);
+		foodService.create(fp);
 		return "redirect:/";
 	}
 
-	@PostMapping(path = "reg")
-	String reg(Model model) {
-
-		/*
-		FoodPriceForm fpf = new FoodPriceForm();
-		fpf.setName("test");
-		model.addAttribute("foodPriceForm", fpf);
-		*/
-		
-		model.addAttribute("foodPriceForm", new FoodPriceForm());
-		
-		return "reg";
-	}
-	
-	@PostMapping(path = "update")
-	String update(FoodPriceForm form) {
-		System.out.println(form.getName());
-		System.out.println(form.getPrice());
+	@PostMapping(path = "delete")
+	String delete(@RequestParam Integer id) {
+		foodService.delete(id);
 		return "redirect:/";
 	}
 
